@@ -1,6 +1,5 @@
 package com.kyneticstudios.divinedagger.listener;
 
-import com.kyneticstudios.divinedagger.DaggerMain;
 import com.kyneticstudios.divinedagger.item.DaggerItem;
 import com.kyneticstudios.divinedagger.utils.TextUtil;
 import de.tr7zw.changeme.nbtapi.NBTItem;
@@ -19,15 +18,17 @@ public class DDListener implements Listener {
     private final Server server;
     private  DaggerItem daggerItem;
 
-    public DDListener() {
+    public DDListener(DaggerItem daggerItem, Server server) {
+        this.daggerItem = daggerItem;
         this.server = Bukkit.getServer();
     }
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
 
+        if(!(event.getEntity().getKiller() instanceof Player)) return;
+
         if (event.getEntity() instanceof Player) {
-            Player vicim = (Player) event.getEntity();
             Player killer =  (Player) event.getEntity().getKiller();
 
             ItemStack hand = killer.getInventory().getItemInHand();
@@ -43,8 +44,6 @@ public class DDListener implements Listener {
 
     @EventHandler
     public void onDaggerUse(EntityDamageByEntityEvent event) {
-
-
         Player damager = (Player) event.getDamager();
         Player damaged = (Player) event.getEntity();
 

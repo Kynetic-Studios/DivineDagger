@@ -6,7 +6,7 @@
 
     <groupId>com.kyneticstudios</groupId>
     <artifactId>DivineDagger</artifactId>
-    <version>1.0</version>
+    <version>1.1-Dev</version>
     <packaging>jar</packaging>
 
     <name>DivineDagger</name>
